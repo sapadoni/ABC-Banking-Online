@@ -26,35 +26,31 @@ public class UserController {
         return userRepository.findById(user_ID);
     }
 
-}
-/*
-
 
     @PostMapping("/users") // CREATE operation in CRUD
     public @Valid
-    Account createUser(@Valid @RequestBody User user) {
-        return UserRepository.save(user);
+    Account createUser(@Valid @RequestBody User USER) {
+        return UserRepository.save(USER);
     }
 
 
     @PutMapping("/users/userId}") // UPDATE operation for CRUD
     public @Valid
-    Account updateUser(@PathVariable(value = "userId") String userId, @Valid @RequestBody User users)
+    User updateUser(@PathVariable(value = "userId") String userId, @Valid @RequestBody User users)
             throws UserNotFoundException {
-        User usr = UserRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userID));
+        User usr = UserRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         usr.setUserId(users.getUserName());
         User updUser = UserRepository.save(usr);
         return updUser;
     }
 
-    @DeleteMapping("accounts/{accountId}") // DELETE operation for CRUD
-    public ResponseEntity<Void> deleteAccount(@PathVariable("accountId") String accountId) throws AccountNotFoundException {
-        Account acc = accountRepository.findById(accountId).orElseThrow(()->new AccountNotFoundException(accountId));
-        accountRepository.deleteById(accountId);
+    @DeleteMapping("users/{userId}") // DELETE operation for CRUD
+    public ResponseEntity<Void> deleteUser(@PathVariable("userId") String userId) throws UserNotFoundException {
+        User usr = userRepository.findById(userId).orElseThrow(()->new UserNotFoundException(userId)));
+        userRepository.deleteById(userId);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
 }
 
-}
-*/
+
